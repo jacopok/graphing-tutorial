@@ -36,7 +36,7 @@ years_sales = sales_df['Year'].to_numpy()
 # Version 1A
 
 plt.plot(years_deaths, deaths)
-plt.savefig('figures/cigarettes_cancer_v1a.pdf', format = 'pdf', bbox_inches='tight')
+plt.savefig('figures/cigarettes_cancer_v1a.png', format = 'png', bbox_inches='tight')
 
 
 #%%
@@ -44,7 +44,7 @@ plt.savefig('figures/cigarettes_cancer_v1a.pdf', format = 'pdf', bbox_inches='ti
 # 1B
 
 plt.plot(years_sales, sales)
-plt.savefig('figures/cigarettes_cancer_v1b.pdf', format = 'pdf', bbox_inches='tight')
+plt.savefig('figures/cigarettes_cancer_v1b.png', format = 'png', bbox_inches='tight')
 
 
 # %%
@@ -77,7 +77,7 @@ ax.legend(handles+handles2, labels+labels2)
 # alternativa:
 # fig.legend(loc='upper left', bbox_to_anchor=(0,1), bbox_transform=ax.transAxes)
 
-fig.savefig('figures/cigarettes_cancer_v2.pdf', format = 'pdf', bbox_inches='tight')
+fig.savefig('figures/cigarettes_cancer_v2.png', format = 'png', bbox_inches='tight')
 
 
 # %%
@@ -123,7 +123,7 @@ ax2.set_ylim(0, max(sales)*1.1)
 # aumentiamo leggermente la dimensione dell'immagine
 fig.set_dpi(150)
 
-fig.savefig('figures/cigarettes_cancer_v3.pdf', format = 'pdf', bbox_inches='tight')
+fig.savefig('figures/cigarettes_cancer_v3.png', format = 'png', bbox_inches='tight')
 fig.show()
 
 # %%
@@ -201,7 +201,7 @@ ax2.set_ylim(ax2_ticks[0], ax2_ticks[-1])
 ax.set_xlim(1900, 2000)
 
 fig.set_dpi(150)
-fig.savefig('figures/cigarettes_cancer_v4.pdf', format = 'pdf', bbox_inches='tight')
+fig.savefig('figures/cigarettes_cancer_v4.png', format = 'png', bbox_inches='tight')
 fig.show()
 
 # %%
