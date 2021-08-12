@@ -22,7 +22,19 @@ print(ys)
 import matplotlib.pyplot as plt
 
 plt.plot(xs, ys)
+plt.savefig('figures/parabola-v1.png', dpi=150, facecolor='white', transparent=True)
+
 # %%
+
+### ATTENZIONE
+
+# Segue risultato dell'esercizio
+
+#
+
+#
+
+### ATTENZIONE
 
 xs = np.linspace(0, 9, num=100)
 ys = xs**2
@@ -33,5 +45,6 @@ plt.ylabel('asse y')
 plt.title('Grafico cartesiano')
 plt.grid('on')
 plt.legend()
+plt.savefig('figures/parabola-v2.png', dpi=150, facecolor='white', transparent=True)
 
 # %%

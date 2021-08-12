@@ -152,7 +152,7 @@ for name, constructor in constructors.items():
     collection = ChordCollection(constructor, name=name, n_trials=int(3e3))
     collection.plot_midpoints()
     plt.tight_layout()
-    plt.savefig(f'Scatterplot dei punti medi - {name}.png', facecolor='white', transparent=False, dpi=150)
+    plt.savefig(f'figures/Scatterplot dei punti medi - {name}.png', facecolor='white', transparent=False, dpi=150)
     plt.show()
 
 
@@ -165,7 +165,7 @@ for name, constructor in constructors.items():
     collection.histogram_midpoint()
     
     plt.tight_layout()
-    plt.savefig(f'Istogramma dei punti medi - {name}.png', facecolor='white', transparent=False, dpi=150)
+    plt.savefig(f'figures/Istogramma dei punti medi - {name}.png', facecolor='white', transparent=False, dpi=150)
     plt.show()
 
 # %%
@@ -177,7 +177,7 @@ for name, constructor in constructors.items():
     collection.histogram_delta_theta()
     
     plt.tight_layout()
-    plt.savefig(f'Istogramma delle distanze angolari - {name}.png', facecolor='white', transparent=False, dpi=150)
+    plt.savefig(f'figures/Istogramma delle distanze angolari - {name}.png', facecolor='white', transparent=False, dpi=150)
     plt.show()
 
 # %%
@@ -205,5 +205,5 @@ for name, constructor in constructors.items():
 collection = ChordCollection(Chord.from_midpoint_r, n_trials=6)
 collection.plot_chords()
 plt.title('')
-plt.savefig('bertrand-chords.pdf', dpi=150)
+plt.savefig('figures/bertrand-chords.pdf', dpi=150)
 # %%
