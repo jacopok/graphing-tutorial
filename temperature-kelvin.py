@@ -37,6 +37,6 @@ plt.ylabel('Temperatura media a Roma (gradi Kelvin)')
 plt.ylim(0, 300)
 plt.xticks(rotation=45)
 plt.tight_layout()
-plt.savefig('temperature-kelvin.png', dpi=150, facecolor='white', transparent=False)
+plt.savefig('figures/temperature-kelvin.png', dpi=150, facecolor='white', transparent=False)
 
 # %%

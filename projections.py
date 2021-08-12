@@ -14,7 +14,7 @@ def tissot_perspective():
     ax.coastlines()
 
     plt.tight_layout()
-    plt.savefig('tissot-perspective.png', dpi=150, transparent=False, facecolor='white')
+    plt.savefig('figures/tissot-perspective.png', dpi=150, transparent=False, facecolor='white')
     plt.show()
 
 
@@ -30,7 +30,7 @@ def tissot_mercator():
     ax.coastlines()
 
     plt.tight_layout()
-    plt.savefig('tissot-mercator.png', dpi=150, transparent=False, facecolor='white')
+    plt.savefig('figures/tissot-mercator.png', dpi=150, transparent=False, facecolor='white')
     plt.show()
 
 def tissot_equirectangular():
@@ -45,7 +45,7 @@ def tissot_equirectangular():
     ax.coastlines()
 
     plt.tight_layout()
-    plt.savefig('tissot-equirectangular.png', dpi=150, transparent=False, facecolor='white')
+    plt.savefig('figures/tissot-equirectangular.png', dpi=150, transparent=False, facecolor='white')
     plt.show()
 
 
@@ -61,7 +61,7 @@ def tissot_mollweide():
     ax.coastlines()
 
     plt.tight_layout()
-    plt.savefig('tissot-mollweide.png', dpi=150, transparent=False, facecolor='white')
+    plt.savefig('figures/tissot-mollweide.png', dpi=150, transparent=False, facecolor='white')
     plt.show()
 
 
@@ -78,9 +78,8 @@ def tissot_goode_homolosine():
     ax.coastlines()
 
     plt.tight_layout()
-    plt.savefig('tissot-goode-homolosine.png', dpi=150, transparent=False, facecolor='white')
+    plt.savefig('figures/tissot-goode-homolosine.png', dpi=150, transparent=False, facecolor='white')
     plt.show()
-
 
 
 # %%

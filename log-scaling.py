@@ -23,7 +23,7 @@ with plt.xkcd():
     plt.xlabel('Reddito $R$, in migliaia di euro')
     plt.ylabel('Densità di probabilità,\n in 1/(1000 euro)')
     plt.tight_layout()
-    plt.savefig('fictitious-income-linear.png', dpi=150)
+    plt.savefig('figures/fictitious-income-linear.png', dpi=150)
 
 # %%
 
@@ -34,7 +34,7 @@ with plt.xkcd():
     plt.xlabel('Reddito $R$, in migliaia di euro')
     plt.ylabel('Densità di probabilità,\n in 1/(1000 euro)')
     plt.tight_layout()
-    plt.savefig('fictitious-income-log1.png', dpi=150)
+    plt.savefig('figures/fictitious-income-log1.png', dpi=150)
 # %%
 
 with plt.xkcd():
@@ -43,5 +43,5 @@ with plt.xkcd():
     plt.xlabel('Logaritmo del reddito: $\\log_{10} R$')
     plt.ylabel('Densità di probabilità, in 1/decade')
     plt.tight_layout()
-    plt.savefig('fictitious-income-log2.png', dpi=150)
+    plt.savefig('figures/fictitious-income-log2.png', dpi=150)
 # %%
