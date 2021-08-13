@@ -3,6 +3,22 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+#%%
+
+# Esempio di dati esponenziali con un asse lineare -
+# grafici che abbiamo purtroppo visto spesso l'anno scorso
+
+xs = np.linspace(0, 10)
+ys = np.exp(xs)
+
+plt.plot(xs, ys)
+
+#%%
+
+# gli stessi dati con un asse logaritmico
+
+plt.semilogy(xs, ys)
+
 # %%
 
 # Generiamo dei dati secondo una distribuzione log-uniforme

@@ -10,6 +10,7 @@ CODE = 'USA'
 deaths_df = pd.read_csv('data/lung-cancer-deaths-per-100000-by-sex-1950-2002.csv')
 
 # selezioniamo solo quelli corrispondenti alla nazione selezionata
+# "setacciare"
 deaths_df = deaths_df[deaths_df.Code == CODE]
 
 # i dati sono presentati divisi per sesso, noi guarderemo un aggregato: 
@@ -61,6 +62,7 @@ ax = plt.gca()
 
 # twinx permette di ottenere un altro "foglio" di carta millimetrata
 # corrispondente però agli stessi valori sulle x (ovvero, per noi, anni)
+# e si possono allungare separatamente sulle y
 ax2 = ax.twinx()
 
 # ora quando diamo il comando "plot" dobbiamo specificare a quali 
