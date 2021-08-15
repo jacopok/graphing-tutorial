@@ -22,7 +22,8 @@ print(ys)
 import matplotlib.pyplot as plt
 
 plt.plot(xs, ys)
-plt.savefig('figures/parabola-v1.png', dpi=150, facecolor='white', transparent=True)
+
+# plt.savefig('figures/parabola-v1.png', dpi=150, facecolor='white', transparent=True)
 
 # %%
 

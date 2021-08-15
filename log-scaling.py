@@ -9,15 +9,19 @@ import matplotlib.pyplot as plt
 # grafici che abbiamo purtroppo visto spesso l'anno scorso
 
 xs = np.linspace(0, 10)
-ys = np.exp(xs)
+ys = np.exp(xs) * np.random.normal(loc=1., scale=.1, size=xs.shape)
 
-plt.plot(xs, ys)
+with plt.xkcd():
+    plt.plot(xs, ys)
+    plt.savefig('figures/exponential-linear.png', dpi=150)
 
 #%%
 
 # gli stessi dati con un asse logaritmico
 
-plt.semilogy(xs, ys)
+with plt.xkcd():
+    plt.semilogy(xs, ys)
+    plt.savefig('figures/exponential-log.png', dpi=150)
 
 # %%
 
@@ -35,7 +39,7 @@ data = loguniform(1, 100, size=10_000)
 
 with plt.xkcd():
     plt.title('Dati fittizi!')
-    plt.hist(data, bins=30, density=True)
+    plt.hist(data, bins=50, density=True)
     plt.xlabel('Reddito $R$, in migliaia di euro')
     plt.ylabel('Densità di probabilità,\n in 1/(1000 euro)')
     plt.tight_layout()
