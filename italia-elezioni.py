@@ -24,8 +24,6 @@ elezioni_df = elezioni_df.filter(
 percentuali = defaultdict(dict)
 votanti = defaultdict(int)
 
-# bad_vals = ['-', 'NaN,00', 'nan', float('NaN')]
-
 for _, row in tqdm(elezioni_df.iterrows()):
     comune = comuni_df[comuni_df.id == row['codice']].nome.to_numpy()[0]
 
@@ -57,12 +55,8 @@ for comune, voti in percentuali.items():
 
 lista_1 = [
  '+EUROPA',
- '10 VOLTE MEGLIO',
- 'AUTODETERMINATZIONE',
- "BLOCCO NAZIONALE PER LE LIBERTA'",
  'CIVICA POPOLARE LORENZIN',
  'ITALIA EUROPA INSIEME',
- 'ITALIA NEL CUORE',
  'LIBERI E UGUALI',
  'LISTA DEL POPOLO PER LA COSTITUZIONE',
  'PARTITO COMUNISTA',
@@ -83,6 +77,8 @@ lista_1 = [
 
 lista_2 = [
  "NOI CON L'ITALIA - UDC",
+ 'ITALIA NEL CUORE',
+ "BLOCCO NAZIONALE PER LE LIBERTA'",
  "FI -FRAT. D'IT. -MOV.NUOVA VALLE D'AOSTA",
  'CASAPOUND ITALIA',
  'FORZA ITALIA',
@@ -91,11 +87,13 @@ lista_2 = [
  'IL POPOLO DELLA FAMIGLIA',
  'ITALIA AGLI ITALIANI',
  'LEGA',
+ 'AUTODETERMINATZIONE',
 ]
 # dx
 
 lista_3 = [
  'MOVIMENTO 5 STELLE',
+ '10 VOLTE MEGLIO',
 ]
 # 5s
 
@@ -138,32 +136,42 @@ lon_per_comune = {
 #%%
 
 lats = np.zeros_like(votanti_per_comune, dtype=float)
-
-for i, com in enumerate(nomi_comuni):
-    try:
-        lats[i] += float(lat_per_comune[com])
-    except KeyError:
-        try:
-            lats[i] += float(lat_per_comune[com.split(' ')[0]])
-        except (KeyError, AttributeError):
-            print(f'problems with {com}')
-            
-lats[lats == 0] += 50
-
 lons = np.zeros_like(votanti_per_comune, dtype=float)
 
+accents = [
+    ("A'", "À"),
+    ("E'", "È"),
+    ("I'", "Ì"),
+    ("O'", "Ò"),
+    ("U'", "Ù"),
+]
+
+def replace_accents(s):
+    for a in accents:
+        s = s.replace(*a)
+    return s
+
+replacements = [
+    lambda com: com,
+    lambda com: com.split(' - ')[0],
+    replace_accents,
+    lambda com: com.split('/')[0],
+    lambda com: com.split(' ')[0],
+]
+
 for i, com in enumerate(nomi_comuni):
-    try:
-        lons[i] += float(lon_per_comune[com])
-    except KeyError:
+    for rep in replacements:
         try:
-            lons[i] += float(lon_per_comune[com.split(' ')[0]])
-        except (KeyError, AttributeError):
-            print(f'problems with {com}')
-            
-lons[lons == 0] += 40
-
-
+            com = rep(com)
+            lats[i] += float(lat_per_comune[com])
+            lons[i] += float(lon_per_comune[com])
+            break
+        except KeyError:
+            continue
+        except AttributeError:
+            print(com)
+    if lats[i] == 0:
+        print(f'Did not find {com}')
 
 # %%
 
@@ -182,7 +190,7 @@ plt.scatter(x, y,
 
 plt.annotate('Sinistra', (-30 * np.sqrt(3) , 50))
 plt.annotate('Destra', ( np.sqrt(3) * 30, 50))
-plt.annotate('5 stelle', (0, -60))
+plt.annotate('5 stelle', (-30, -60))
 
 plt.plot([0, 0], [0, 100], ls=':', c='black')
 plt.plot([0, -np.sqrt(3/4) * 100], [0, -50], ls=':', c='black')
@@ -190,14 +198,18 @@ plt.plot([0, np.sqrt(3/4) * 100], [0, -50], ls=':', c='black')
 
 plt.colorbar(ScalarMappable(norm=rescale_lat, cmap=colormap), label='Latitudine')
 
-plt.xlim(-70, 70)
-plt.ylim(-70, 60)
+plt.xlim(-np.sqrt(3) * 50, np.sqrt(3) * 50)
+plt.ylim(-70, 55)
 
 plt.scatter(0, 0, c='black', s=6)
 
-plt.savefig('partitiecolori.pdf', dpi=150)
+plt.tight_layout()
+plt.savefig('figures/partitiecolori.png', dpi=500, transparency=False, facecolor='white')
 
 # %%
 
+plt.scatter(lons, lats)
+plt.xlim(6, 19)
+plt.ylim(34, 48)
 
 # %%
