@@ -67,7 +67,6 @@ lista_1 = [
  'PD-UV-UVP-EPAV',
  'PER UNA SINISTRA RIVOLUZIONARIA',
  'POTERE AL POPOLO!',
- 'POUR TOUS PER TUTTI PE TCHEUT',
  'RINASCIMENTO MIR',
  'RISPOSTA CIVICA',
  'SIAMO',
@@ -97,6 +96,13 @@ lista_3 = [
 ]
 # 5s
 
+uncategorized = [
+ 'POUR TOUS PER TUTTI PE TCHEUT',
+]
+
+class PartitoNonTrovato(NotImplementedError):
+    pass
+
 def indice_partito(partito):
     if partito in lista_1:
         return 0
@@ -105,7 +111,7 @@ def indice_partito(partito):
     elif partito in lista_3:
         return 2
     else:
-        raise NotImplementedError
+        raise PartitoNonTrovato
 
 # %%
 
@@ -115,7 +121,10 @@ perc_per_lista = np.zeros((len(votanti_per_comune), 3), dtype=float)
 
 for comune, voti in percentuali.items():
     for partito, perc in voti.items():
-        perc_per_lista[nomi_comuni.index(comune),indice_partito(partito)] += perc
+        try:
+            perc_per_lista[nomi_comuni.index(comune), indice_partito(partito)] += perc
+        except PartitoNonTrovato:
+            continue
 
 #%%
 
@@ -170,8 +179,33 @@ for i, com in enumerate(nomi_comuni):
             continue
         except AttributeError:
             print(com)
+            continue
     if lats[i] == 0:
         print(f'Did not find {com}')
+
+#%%
+
+comuni_grandi_idx = votanti_per_comune.argsort()[-40:]
+
+comuni_grandi_legend = {
+    nomi_comuni[idx].split(' ')[0]: lats[idx]
+    for idx in comuni_grandi_idx
+}
+
+comuni_grandi_legend.pop('VERONA')
+comuni_grandi_legend.pop('GENOVA')
+comuni_grandi_legend.pop('BARI')
+comuni_grandi_legend.pop('TORINO')
+comuni_grandi_legend.pop('VENEZIA')
+comuni_grandi_legend.pop('MESSINA')
+comuni_grandi_legend.pop('TRIESTE')
+comuni_grandi_legend.pop('PADOVA')
+comuni_grandi_legend.pop('MODENA')
+comuni_grandi_legend.pop('BRESCIA')
+
+
+comuni_grandi_labels = list(comuni_grandi_legend.keys())
+comuni_grandi_lats = list(comuni_grandi_legend.values())
 
 # %%
 
@@ -184,27 +218,48 @@ colormap = get_cmap('turbo')
 rescale_lat = plt.Normalize(vmin = 36, vmax=47)    
 
 plt.scatter(x, y,
-    s=votanti_per_comune / 3e3,
+    s=votanti_per_comune / 4e2,
     alpha=.3,
-    c=colormap(rescale_lat(lats)))
+    c=colormap(rescale_lat(lats)),
+    marker='.',
+    edgecolors='none'
+    )
 
-plt.annotate('Sinistra', (-30 * np.sqrt(3) , 50))
-plt.annotate('Destra', ( np.sqrt(3) * 30, 50))
-plt.annotate('5 stelle', (-30, -60))
+plt.annotate('Centre-left', (-40 , 43))
+plt.annotate('Centre-right', (  20, 43))
+plt.annotate('5 stelle', (-10, -70))
 
-plt.plot([0, 0], [0, 100], ls=':', c='black')
-plt.plot([0, -np.sqrt(3/4) * 100], [0, -50], ls=':', c='black')
-plt.plot([0, np.sqrt(3/4) * 100], [0, -50], ls=':', c='black')
+plt.plot([0, 0], [0, 50], ls=':', c='black')
+plt.plot([0, -np.sqrt(3/4) * 50], [0, -25], ls=':', c='black')
+plt.plot([0, np.sqrt(3/4) * 50], [0, -25], ls=':', c='black')
 
-plt.colorbar(ScalarMappable(norm=rescale_lat, cmap=colormap), label='Latitudine')
+x_triangle = np.array([0, -np.sqrt(3 / 4), np.sqrt(3 / 4), 0]) * 100
+y_triangle = np.array([-1, 1/2, 1/2, -1]) * 100
+plt.plot(x_triangle, y_triangle, c='black', lw=.5)
+
+from matplotlib.ticker import FixedFormatter
+
+colorbar = plt.colorbar(
+    ScalarMappable(norm=rescale_lat, cmap=colormap),
+    label='Latitude',
+    format = FixedFormatter(comuni_grandi_labels),
+    ticks = comuni_grandi_lats
+)
+
+plt.gca().axes.get_xaxis().set_visible(False)
+plt.gca().axes.get_yaxis().set_visible(False)
+for spine in plt.gca().spines.values():
+    spine.set_visible(False)
 
 plt.xlim(-np.sqrt(3) * 50, np.sqrt(3) * 50)
-plt.ylim(-70, 55)
+plt.ylim(-100, 50.01)
 
 plt.scatter(0, 0, c='black', s=6)
+plt.title('2018 Election in Italy')
 
 plt.tight_layout()
 plt.savefig('figures/partitiecolori.png', dpi=500, transparency=False, facecolor='white')
+plt.savefig('figures/partitiecolori.pdf', dpi=500, transparency=False, facecolor='white')
 
 # %%
 
