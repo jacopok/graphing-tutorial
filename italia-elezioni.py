@@ -225,8 +225,8 @@ plt.scatter(x, y,
     edgecolors='none'
     )
 
-plt.annotate('Centre-left', (-40 , 43))
-plt.annotate('Centre-right', (  20, 43))
+plt.annotate('Left', (-40 , 43))
+plt.annotate('Right', ( 30, 43))
 plt.annotate('5 stelle', (-10, -70))
 
 plt.plot([0, 0], [0, 50], ls=':', c='black')
@@ -258,7 +258,7 @@ plt.scatter(0, 0, c='black', s=6)
 plt.title('2018 Election in Italy')
 
 plt.tight_layout()
-plt.savefig('figures/partitiecolori.png', dpi=500, transparency=False, facecolor='white')
+plt.savefig('figures/partitiecolori.png', dpi=1000, transparency=False, facecolor='white')
 plt.savefig('figures/partitiecolori.pdf', dpi=500, transparency=False, facecolor='white')
 
 # %%
