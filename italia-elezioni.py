@@ -192,16 +192,21 @@ comuni_grandi_legend = {
     for idx in comuni_grandi_idx
 }
 
-comuni_grandi_legend.pop('VERONA')
-comuni_grandi_legend.pop('GENOVA')
-comuni_grandi_legend.pop('BARI')
-comuni_grandi_legend.pop('TORINO')
-comuni_grandi_legend.pop('VENEZIA')
-comuni_grandi_legend.pop('MESSINA')
-comuni_grandi_legend.pop('TRIESTE')
-comuni_grandi_legend.pop('PADOVA')
-comuni_grandi_legend.pop('MODENA')
-comuni_grandi_legend.pop('BRESCIA')
+da_rimuovere = [
+    'VERONA',
+    'GENOVA',
+    'BARI',
+    'TORINO',
+    'VENEZIA',
+    'MESSINA',
+    'TRIESTE',
+    'PADOVA',
+    'MODENA',
+    'BRESCIA',
+]
+
+for comune in da_rimuovere:
+    comuni_grandi_legend.pop(comune)
 
 
 comuni_grandi_labels = list(comuni_grandi_legend.keys())

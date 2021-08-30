@@ -34,14 +34,20 @@ def loguniform(a, b, rng=rng, **kwargs):
 
 data = loguniform(1, 100, size=10_000)
 
+avg = np.average(data)
+std = np.std(data)
+med = np.median(data)
 
 # %%
 
 with plt.xkcd():
     plt.title('Dati fittizi!')
     plt.hist(data, bins=50, density=True)
+    plt.axvline(avg, label='Media', c='green')
+    plt.axvline(med, label='Mediana', c='orange')
     plt.xlabel('Reddito $R$, in migliaia di euro')
     plt.ylabel('Densità di probabilità,\n in 1/(1000 euro)')
+    plt.legend()
     plt.tight_layout()
     plt.savefig('figures/fictitious-income-linear.png', dpi=150)
 
@@ -49,12 +55,21 @@ with plt.xkcd():
 
 with plt.xkcd():
     plt.title('Dati fittizi!')
-    plt.hist(data, bins=30, density=True)
+    v = plt.hist(data, bins=30, density=True)
     plt.xscale('log')
     plt.xlabel('Reddito $R$, in migliaia di euro')
     plt.ylabel('Densità di probabilità,\n in 1/(1000 euro)')
     plt.tight_layout()
     plt.savefig('figures/fictitious-income-log1.png', dpi=150)
+
+#%%
+
+# Se invece non mettiamo i bins! 
+with plt.xkcd():
+    v = plt.hist(data, bins=30, density=True)
+    plt.plot( (v[1][1:] + v[1][:-1] ) / 2, v[0])
+    plt.xscale('log')
+
 # %%
 
 with plt.xkcd():
