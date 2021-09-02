@@ -39,3 +39,8 @@ Nello specifico abbiamo:
 Per alcune altre informazioni su come fare grafici digitalmente [questo articolo](http://www.sciencedirect.com/science/article/pii/S0264127519303065) è molto utile; in più consiglio lo storico libro di [Tufte](https://www.edwardtufte.com/tufte/books_vdqi).
 
 [Slides seconda lezione qui](https://docs.google.com/presentation/d/13D0DWYi2gg94ug22RvxYdW3UsLSK50RgLkk36ptcvBo/edit?usp=sharing).
+
+#### Extra
+
+Con il notebook `attractors.ipynb` si possono generare visualizzazioni tridimensionali 
+di attrattori strani (per il modulo sul Caos tenuto da [Leonardo](https://github.com/lzampieri)).
