@@ -10,6 +10,8 @@ ma in due nuove versioni implementate in Google Colab, con più commenti.
 
 [Slides prima lezione qui](https://docs.google.com/presentation/d/1uQI1e3Q7WsXNNu5FlnID5YXbpNbSDEYFBs4s1SpoJ-A/edit?usp=sharing).
 
+[Simulatore di daltonia](http://www.color-blindness.com/coblis-color-blindness-simulator/).
+
 ##### Esercizio
 
 Creare una nuova visualizzazione di un dataset!
