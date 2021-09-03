@@ -23,7 +23,6 @@ Scelta libera del tema, consigliati quelli che si trovano nel [blog di OWiD](htt
 
 Idealmente, generare la visualizzazione con uno script in python + matplotlib; non c’è problema se non riuscite a fare tutto ciò che volete, in tal caso un programma parziale con spiegazione a voce / disegno su carta del grafico desiderato va benissimo: la cosa importante è l’idea. 
 
-
 #### Seconda lezione
 
 Gli altri files contenuti in questa cartella servono a generare alcune delle figure utilizzate nelle slides, tranne `SSA 2021 - Notes.md`, appunti per questo corso non particolarmente ben tenuti ma che magari possono essere utili per qualcosa.
@@ -35,10 +34,14 @@ Nello specifico abbiamo:
 - `temperature-kelvin.py` illustra un piccolo punto riguardo al mettere lo zero dell'asse y a zero;
 - `projections.py` genera mappe e proiezioni complete di indicatrici di Tissot con il modulo [cartopy](https://scitools.org.uk/cartopy/docs/latest/).
 
-
-Per alcune altre informazioni su come fare grafici digitalmente [questo articolo](http://www.sciencedirect.com/science/article/pii/S0264127519303065) è molto utile; in più consiglio lo storico libro di [Tufte](https://www.edwardtufte.com/tufte/books_vdqi).
-
 [Slides seconda lezione qui](https://docs.google.com/presentation/d/13D0DWYi2gg94ug22RvxYdW3UsLSK50RgLkk36ptcvBo/edit?usp=sharing).
+
+Per alcune altre informazioni su come fare grafici digitalmente potete leggere ["Data Visualisation Heuristics for the physical sciences"](http://www.sciencedirect.com/science/article/pii/S0264127519303065) oppure un articolo simile dal titolo più clickbait-y, ["Ten simple rules for better figures"](https://dx.plos.org/10.1371/journal.pcbi.1003833). 
+
+Per chi avesse voglia di qualcosa di più esteso consiglio lo storico libro di [Tufte, "The Visual Display of Quantitative Information"](https://www.edwardtufte.com/tufte/books_vdqi), quello che parlava del grafico sulla ritirata di Napoleone in Russia.
+
+Infine, per il tema della distorsione dell'informazione c'è l'ottimo "How to lie with statistics" di Huff e Geis; se non volete leggere l'intero libro però [questo post](https://towardsdatascience.com/lessons-from-how-to-lie-with-statistics-57060c0d2f19) riassume alcuni dei suoi punti salienti.
+
 
 #### Extra
 
